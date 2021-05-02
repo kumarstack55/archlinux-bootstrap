@@ -1,0 +1,5 @@
+---
+- name: Ensure that man is installed.
+  pacman:
+    name: man
+    state: present

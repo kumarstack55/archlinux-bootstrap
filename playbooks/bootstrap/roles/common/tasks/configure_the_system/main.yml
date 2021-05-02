@@ -1,0 +1,18 @@
+---
+- import_tasks: time_zone/main.yml
+  tags: [ time_zone ]
+
+- import_tasks: localization/main.yml
+  tags: [ localization ]
+
+- import_tasks: network_configuration/main.yml
+  tags: [ network_configuration ]
+
+- import_tasks: initramfs/main.yml
+  tags: [ initramfs ]
+
+- import_tasks: root_password/main.yml
+  tags: [ root_password ]
+
+- import_tasks: boot_loader/main.yml
+  tags: [ boot_loader ]

@@ -1,0 +1,24 @@
+---
+- name: Ensure that non-root user exists.
+  user:
+    name: "{{ local_user_name }}"
+    state: present
+  register: result_local_user
+
+- name: 
+  authorized_key:
+    user: "{{ local_user_name }}"
+    state: present
+    key: https://github.com/{{ local_user_github_user_id }}.keys
+    path: /home/{{ local_user_name }}/.ssh/authorized_keys
+
+- name: Ensure that the root password is locked.
+  user:
+    name: root
+    password_lock: yes
+
+- name: Ensure that a user exists to log in at the console.
+  shell: >
+    echo '{{ local_user_name }}:{{ local_user_console_password }}'
+    | chpasswd
+  when: result_local_user.changed

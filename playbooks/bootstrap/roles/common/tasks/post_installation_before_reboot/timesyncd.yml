@@ -1,0 +1,10 @@
+---
+- name: Ensure that systemd-timesyncd.service is configured.
+  template:
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+
+- name: Ensure that systemd-timesyncd.service is configured.
+  systemd:
+    name: systemd-timesyncd.service
+    enabled: yes

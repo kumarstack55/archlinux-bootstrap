@@ -1,0 +1,6 @@
+---
+- name: Ensure that keymap is configured.
+  template:
+    src: vconsole.conf.j2
+    dest: /etc/vconsole.conf
+    backup: yes

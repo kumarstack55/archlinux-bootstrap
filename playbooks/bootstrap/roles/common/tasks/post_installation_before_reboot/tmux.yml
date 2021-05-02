@@ -1,0 +1,5 @@
+---
+- name: Ensure that tmux is installed.
+  pacman:
+    name: tmux
+    state: present

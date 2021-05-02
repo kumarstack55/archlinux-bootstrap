@@ -1,0 +1,5 @@
+---
+- name: Ensure that root password is locked.
+  user:
+    name: root
+    password_lock: yes

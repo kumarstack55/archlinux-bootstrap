@@ -1,0 +1,18 @@
+---
+- name: Ensure that pacman is configured.
+  template:
+    src: pacman.conf.j2
+    dest: /etc/pacman.conf
+
+- name: Ensure that packages are installed.
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - which
+    - vi
+    - vim
+    - neovim
+    - python3
+    - python-pip
+    - bash-completion

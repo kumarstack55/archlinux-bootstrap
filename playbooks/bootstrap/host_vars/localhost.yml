@@ -1,0 +1,13 @@
+domain: localdomain
+
+timezone_region: Asia
+timezone_city: Tokyo
+
+local_user_name: kumarstack55
+local_user_github_user_id: kumarstack55
+
+# By the time you set the password, sshd will prohibit you from logging
+# in with the password. Therefore, be careful not to leak this password
+# to a third party with console access. Also, the password should be
+# changed after the first login.
+local_user_console_password: hackme

@@ -1,0 +1,14 @@
+---
+- name: Ensure that mlocate is installed.
+  pacman:
+    name: mlocate
+    state: present
+      
+- name: Check that database exists.
+  stat:
+    name: /var/lib/mlocate/mlocate.db
+  register: result_mlocate_exists
+
+- name: Ensure that database exists.
+  shell: updatedb
+  when: not result_mlocate_exists.stat.exists

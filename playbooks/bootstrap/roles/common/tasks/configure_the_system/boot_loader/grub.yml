@@ -1,0 +1,29 @@
+---
+- name: Ensure that grub is installed.
+  pacman:
+    name: grub
+    state: present
+      
+- name: Ensure that microcode for Intel processors is installed.
+  pacman:
+    name: intel-ucode
+    state: present
+  register: result_intel_ucode
+
+- name: Ensure that grub-install is executed.
+  shell: >
+    grub-install --target=i386-pc /dev/sda &&
+    echo >/.ansible_grub_install
+  args:
+    creates: /.ansible_grub_install
+
+- name: Check that /boot/grub/grub.cfg exists.
+  stat:
+    path: /boot/grub/grub.cfg
+  register: result_stat_grub_cfg
+
+- name: Ensure that /boot/grub/grub.cfg exists.
+  shell: grub-mkconfig -o /boot/grub/grub.cfg
+  when: >
+    not result_stat_grub_cfg.stat.exists or
+    result_intel_ucode.changed

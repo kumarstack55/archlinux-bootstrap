@@ -1,0 +1,6 @@
+---
+- name: Ensure that hostname is configured.
+  template:
+    src: hostname.j2
+    dest: /etc/hostname
+    backup: yes

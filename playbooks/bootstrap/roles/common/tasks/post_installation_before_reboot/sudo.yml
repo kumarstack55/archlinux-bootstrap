@@ -1,0 +1,10 @@
+---
+- name: Ensure that sudo is installed.
+  pacman:
+    name: sudo
+    state: present
+
+- name: Ensure that user can be elevated to privileged state.
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers.d/{{ local_user_name }}

@@ -1,0 +1,4 @@
+---
+- { import_tasks: hostname.yml, tags: [ hostname ] }
+- { import_tasks: hosts.yml, tags: [ hosts ] }
+- { import_tasks: network.yml, tags: [ network ] }

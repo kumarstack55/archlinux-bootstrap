@@ -1,0 +1,10 @@
+---
+- name: Ensure that avahi is installed.
+  pacman:
+    name: avahi
+    state: present
+
+- name: Ensure that avahi-daemon is enabled.
+  systemd:
+    name: avahi-daemon.service
+    enabled: yes

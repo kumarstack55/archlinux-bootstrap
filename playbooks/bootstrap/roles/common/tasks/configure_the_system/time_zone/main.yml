@@ -1,0 +1,7 @@
+---
+- name: Ensure that timezone is configured.
+  file:
+    src: /usr/share/zoneinfo/{{ timezone_region }}/{{ timezone_city }}
+    dest: /etc/localtime
+    state: link
+    force: yes

@@ -1,0 +1,16 @@
+---
+- name: Check /boot/initramfs-linux.img exists
+  stat:
+    path: /boot/initramfs-linux.img
+  register: result_initramfs_linux_img
+
+- name: Check /boot/initramfs-linux-fallback.img exists
+  stat:
+    path: /boot/initramfs-linux-fallback.img
+  register: result_initramfs_linux_fallback_img
+
+- name: Ensure that image files are created.
+  shell: mkinitcpio -P
+  when: >
+    (not result_initramfs_linux_img.stat.exists) or
+    (not result_initramfs_linux_fallback_img.stat.exists)

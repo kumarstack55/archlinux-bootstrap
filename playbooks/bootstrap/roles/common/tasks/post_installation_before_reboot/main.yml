@@ -1,0 +1,38 @@
+---
+# system_administration
+- { import_tasks: local_user.yml, tags: [ local_user ] }
+- { import_tasks: sudo.yml, tags: [ sudo ] }
+
+# package_management
+- { import_tasks: pacman.yml, tags: [ pacman ] }
+
+# booting
+
+# graphical_user_interface
+
+# power_management
+
+# multimedia
+
+# networking
+- { import_tasks: timesyncd.yml, tags: [ timesyncd ] }
+- { import_tasks: sshd.yml, tags: [ sshd ] }
+# ホスト名で名前解決する
+- { import_tasks: avahi.yml, tags: [ avahi ] }
+
+# input_devices
+
+# optimization
+
+# system_services
+- { import_tasks: mlocate.yml, tags: [ mlocate ] }
+
+# appearance
+
+# console_improvements
+- { import_tasks: tmux.yml, tags: [ tmux ] }
+
+# その他
+# 毎回入れそうなアプリケーションを入れておく
+- { import_tasks: man.yml, tags: [ man ] }
+- { import_tasks: universal_ctags.yml, tags: [ universal_ctags ] }

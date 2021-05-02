@@ -1,0 +1,3 @@
+---
+- { import_tasks: locale.yml, tags: [ locale ] }
+- { import_tasks: keymap.yml, tags: [ keymap ] }

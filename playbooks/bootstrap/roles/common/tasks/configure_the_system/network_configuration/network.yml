@@ -1,0 +1,19 @@
+---
+- name: Ensure that interfaces are DHCP enabled.
+  template:
+    src: static.network.j2
+    dest: /etc/systemd/network/{{ item.name }}-static.network
+    backup: yes
+  with_items:
+    - name: enp0s3
+    - name: enp0s8
+
+- name: Ensure that systemd-networkd enabled.
+  systemd:
+    name: systemd-networkd.service
+    enabled: yes
+
+- name: Ensure that systemd-resolved enabled.
+  systemd:
+    name: systemd-resolved.service
+    enabled: yes

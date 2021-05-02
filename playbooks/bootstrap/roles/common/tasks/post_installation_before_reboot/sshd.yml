@@ -1,0 +1,18 @@
+---
+- name: Ensure that openssh is installed.
+  pacman:
+    name: openssh
+    state: present
+
+- name: Ensure that sshd enabled.
+  systemd:
+    name: sshd.service
+    enabled: yes
+  # In check mode, this task may fail because pacman execution is skipped.
+  ignore_errors: "{{ ansible_check_mode }}"
+
+- name: Ensure that sshd is configured.
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    backup: yes

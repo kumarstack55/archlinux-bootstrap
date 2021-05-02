@@ -1,0 +1,15 @@
+---
+- name: Ensure that locale.gen is configured.
+  template:
+    src: locale.gen.j2
+    dest: /etc/locale.gen
+    backup: yes
+
+- name: Check that locale-archive exists.
+  stat:
+    path: /usr/lib/locale/locale-archive
+  register: result_locale_archive
+
+- name: Ensure that locale-archive exists.
+  shell: locale-gen
+  when: not result_locale_archive.stat.exists

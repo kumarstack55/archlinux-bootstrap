@@ -1,0 +1,6 @@
+---
+- import_tasks: configure_the_system/main.yml
+  tags: [ configure_the_system ]
+
+- import_tasks: post_installation_before_reboot/main.yml
+  tags: [ post_installation_before_reboot ]

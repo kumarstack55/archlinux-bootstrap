@@ -1,0 +1,5 @@
+---
+- name: Ensure that universal-ctags is installed.
+  pacman:
+    name: ctags
+    state: present
