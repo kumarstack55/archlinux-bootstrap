@@ -46,33 +46,15 @@ Arch Linux のインストール作業を繰り返しても苦にならないこ
                 * sda2, (残りすべて), linux
         * ネットワーク
             * アダプター1: NAT
-            * アダプター2: ホストオンリーアダプター
+                * ポートフォワーディング
+                    * 名前: ssh
+                    * プロトコル: TCP
+                    * ホストIP: 127.0.0.1
+                    * ホストポート: 2222
+                    * ゲストIP: (空欄)
+                    * ゲストポート: 22
 
-### ネットワーク構成: 手動インストールの場合
-
-```
-    GitHub
-    |
-    Internet
-    |
-    Gateway
-    |
-   -o---o-------------------o-
-        |                   |
-        |                   NAT Router
-        |                   |
-        |                   enp0s8 (DHCP)
-        VirtualBox Host     Virtual Machine
-        |                   enp0s3 (DHCP)
-        |                   |
-       -o-------------------o- 192.168.56.0/24
-                               Virtual Box Host Only Network
-```
-
-* Arch Linux のローカルのユーザとして `local_user_name` を作ります。
-* ユーザのSSH公開鍵として `local_user_github_user_id` の公開鍵を設定します。
-
-### ネットワーク構成: Vagrant boxの場合
+### ネットワーク構成
 
 ```
     GitHub
@@ -91,11 +73,14 @@ Arch Linux のインストール作業を繰り返しても苦にならないこ
         |                             eth0 (altname enp0s3) (DHCP)
         VirtualBox Host               Virtual Machine
           port forwarding             Hostname: archlinux
-            adapter1                    User: vagrant
-              TCP                       Password: vagrant
+            adapter1                    
+              TCP                       
                 Host: 127.0.0.1:2222
                 Guest: 22
 ```
+
+* Arch Linux のローカルのユーザとして `local_user_name` を作ります。
+* ユーザのSSH公開鍵として `local_user_github_user_id` の公開鍵を設定します。
 
 ### 仮想マシンへのログイン
 
@@ -148,7 +133,6 @@ live 環境で起動後、インターネット経由で bootstrap.sh を取得�
 bootstrap.sh を実行してください。
 ディスクのパーティションは上書きされる点に注意してください。
 
-
 ```
 curl -o bootstrap.sh https://raw.githubusercontent.com/kumarstack55/archlinux-bootstrap/main/bin/bootstrap.sh
 bash ./bootstrap.sh
@@ -166,7 +150,8 @@ hwclock --systohc
 
 ```sh
 # リポジトリ取得と Ansible プレイブック実行のため、パッケージを導入する。
-sudo pacman -S --noconfirm git ansible
+# vagrant の場合は sudo が必要である。
+pacman -S --noconfirm git ansible
 
 # リポジトリを得る。
 cd /tmp
