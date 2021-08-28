@@ -5,4 +5,5 @@
   become: yes
   roles:
     - { role: common, tag: [ common ] }
+    - { role: etckeeper, tags: [ etckeeper ] }
     - { role: desktop-environment, tags: [ desktop-environment ] }

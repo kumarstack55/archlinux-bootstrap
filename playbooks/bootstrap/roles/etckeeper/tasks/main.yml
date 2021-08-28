@@ -1,0 +1,8 @@
+- name: Ensure that etckeeper is installed.
+  pacman:
+    name: etckeeper
+  register: result
+
+- name: Ensure that etckeeper is initialized.
+  shell: etckeeper init
+  when: result.changed
