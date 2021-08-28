@@ -1,0 +1,20 @@
+---
+- name: Ensure that GNOME is installed.
+  pacman:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gnome
+    - gnome-extra
+
+- name: Ensure that GDM is configured.
+  template:
+    src: custom.conf.j2
+    dest: /etc/gdm/custom.conf
+
+- name: Ensure that GDM is enabled.
+  systemd:
+    name: gdm.service
+    enabled: yes
+  # In check mode, this task may fail because pacman execution is skipped.
+  ignore_errors: "{{ ansible_check_mode }}"
