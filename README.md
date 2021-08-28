@@ -135,7 +135,7 @@ hwclock --systohc
 
 ```sh
 # リポジトリ取得と Ansible プレイブック実行のため、パッケージを導入する。
-pacman -S git ansible
+sudo pacman -S --noconfirm kkkkjjjgit ansible
 
 # リポジトリを得る。
 cd /tmp
