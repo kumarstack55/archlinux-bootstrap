@@ -6,7 +6,6 @@
     backup: yes
   with_items:
     - name: enp0s3
-    - name: enp0s8
 
 - name: Ensure that systemd-networkd enabled.
   systemd:
