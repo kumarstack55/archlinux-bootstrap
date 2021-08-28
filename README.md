@@ -48,7 +48,7 @@ Arch Linux のインストール作業を繰り返しても苦にならないこ
             * アダプター1: NAT
             * アダプター2: ホストオンリーアダプター
 
-### ネットワーク構成
+### ネットワーク構成: 手動インストールの場合
 
 ```
     GitHub
@@ -71,6 +71,31 @@ Arch Linux のインストール作業を繰り返しても苦にならないこ
 
 * Arch Linux のローカルのユーザとして `local_user_name` を作ります。
 * ユーザのSSH公開鍵として `local_user_github_user_id` の公開鍵を設定します。
+
+### ネットワーク構成: Vagrant boxの場合
+
+```
+    GitHub
+    |
+    Internet
+    |
+    Gateway
+    |
+   -o---o-----------------------------o-
+        |                             |
+        |                             NAT Router
+        |                             |
+        |                            -o- 10.0.2.15/24
+        |                             |
+        |                             adapter1
+        |                             eth0 (altname enp0s3) (DHCP)
+        VirtualBox Host               Virtual Machine
+          port forwarding             Hostname: archlinux
+            adapter1                    User: vagrant
+              TCP                       Password: vagrant
+                Host: 127.0.0.1:2222
+                Guest: 22
+```
 
 ### 仮想マシンへのログイン
 
