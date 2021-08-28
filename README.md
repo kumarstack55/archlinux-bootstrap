@@ -15,7 +15,7 @@ Arch Linux のインストール作業を繰り返しても苦にならないこ
     * シンプルにデザインする。
 * 仮想マシンのサイジング
     * インストールに必要な最小構成をそのまま使う。
-        * メモリは 1024MB とする。理由: 512MBはインストール過程で失敗するため。
+        * メモリは 1024MB とする。理由: ArchLinux 選択時のVirtualBox の初期値 1024MB を 512MB に変えたときインストール過程で失敗したため。
         * ストレージは 8GB とする。VirtualBox の初期値を利用する。
             * なお、Arch Linux 導入直後で 1.7GB 程度消費したので不足しない。
 * ストレージのパーティション構成
@@ -147,6 +147,12 @@ https://wiki.archlinux.org/index.php/Installation_guide
 live 環境で起動後、インターネット経由で bootstrap.sh を取得し、
 bootstrap.sh を実行してください。
 ディスクのパーティションは上書きされる点に注意してください。
+
+
+```
+curl -o bootstrap.sh https://raw.githubusercontent.com/kumarstack55/archlinux-bootstrap/main/bin/bootstrap.sh
+bash ./bootstrap.sh
+```
 
 ```
 arch-chroot /mnt
