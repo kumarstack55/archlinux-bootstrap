@@ -1,9 +1,14 @@
 ---
 - hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   connection: local
   become: yes
   roles:
-    - { role: common, tag: [ common ] }
-    - { role: etckeeper, tags: [ etckeeper ] }
-    - { role: desktop-environment, tags: [ desktop-environment ] }
+    - role: common
+      tags: [ common ]
+
+    - role: etckeeper
+      tags: [ etckeeper ]
+
+    - role: desktop-environment
+      tags: [ desktop-environment ]

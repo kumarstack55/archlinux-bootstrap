@@ -1,11 +1,25 @@
 ---
-- name: Ensure that interfaces are DHCP enabled.
+- name: Check if the environment is vagrant.
+  set_fact:
+    is_vagrant_env: "{{ 'eth0' in ansible_interfaces }}"
+
+- name: Vagrant | Ensure that interfaces are DHCP enabled.
+  template:
+    src: static.network.j2
+    dest: /etc/systemd/network/{{ item.name }}.network
+    backup: yes
+  with_items:
+    - name: eth0
+  when: is_vagrant_env
+
+- name: Not Vagrant | Ensure that interfaces are DHCP enabled.
   template:
     src: static.network.j2
     dest: /etc/systemd/network/{{ item.name }}-static.network
     backup: yes
   with_items:
     - name: enp0s3
+  when: not is_vagrant_env
 
 - name: Ensure that systemd-networkd enabled.
   systemd:
