@@ -127,7 +127,7 @@ https://wiki.archlinux.org/index.php/Installation_guide
 
 ただし、 `hwclock` は bootstrap.sh の範囲外として手動実行とする。
 
-## ArchLinux をインストールする
+## インストール: ArchLinux インストールに ISO メディアを使う場合
 
 live 環境で起動後、インターネット経由で bootstrap.sh を取得し、
 bootstrap.sh を実行してください。
@@ -149,6 +149,8 @@ hwclock --systohc
 ```
 
 ```sh
+# root@vm-archlinux
+
 # リポジトリ取得と Ansible プレイブック実行のため、パッケージを導入する。
 # vagrant の場合は sudo が必要である。
 pacman -S --noconfirm git ansible
@@ -184,4 +186,33 @@ umount -R /mnt
 
 # 再起動し、インストールされたOSの初回起動を試みる。
 reboot
+```
+
+## インストール: ArchLinux インストールに Vagrant を利用する場合
+
+```bash
+# vagrant@archlinux
+
+# リポジトリ取得と Ansible プレイブック実行のため、パッケージを導入する。
+sudo pacman -S --noconfirm git ansible
+
+# リポジトリを得る。
+cd /tmp
+git clone https://github.com/kumarstack55/archlinux-bootstrap
+cd ./archlinux-bootstrap/playbooks/bootstrap
+
+# 必要あれば設定する。
+vi ./host_vars/localhost.yml
+
+# プレイブックを dry-run で実行する。
+ansible-playbook --check \
+  -i inventory site.yml \
+  --extra-vars "hostname=archlinux" \
+  --diff
+
+# プレイブックを実行する。
+ansible-playbook \
+  -i inventory site.yml \
+  --extra-vars "hostname=archlinux" \
+  --diff
 ```
