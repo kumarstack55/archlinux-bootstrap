@@ -207,12 +207,10 @@ vi ./host_vars/localhost.yml
 # プレイブックを dry-run で実行する。
 ansible-playbook --check \
   -i inventory site.yml \
-  --extra-vars "hostname=archlinux" \
   --diff
 
 # プレイブックを実行する。
 ansible-playbook \
   -i inventory site.yml \
-  --extra-vars "hostname=archlinux" \
   --diff
 ```
