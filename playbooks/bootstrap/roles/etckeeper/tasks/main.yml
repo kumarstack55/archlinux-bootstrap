@@ -3,6 +3,12 @@
     name: etckeeper
   register: result
 
+- name: Ensure that root's git is configured.
+  template:
+    src: dot.gitconfig.j2
+    dest: /root/.gitconfig
+    backup: yes
+
 - name: Ensure that etckeeper is initialized.
   shell: etckeeper init
   when: result.changed
