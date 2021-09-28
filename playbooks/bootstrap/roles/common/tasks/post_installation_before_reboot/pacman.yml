@@ -22,16 +22,12 @@
   pacman:
     name: archlinux-keyring
     state: present
-  register: archlinux_keyring_result
 
 - name: Ensure that keys are loaded.
   shell: pacman-key --populate archlinux
-  when: archlinux_keyring_result.changed
 
 - name: Ensure that keys are refreshed.
   shell: pacman-key --refresh-keys
-  when: archlinux_keyring_result.changed
 
 - name: Ensure that all packages are upgraded.
   shell: pacman -Syu
-  when: archlinux_keyring_result.changed
