@@ -19,10 +19,10 @@
     - archlinux-keyring
 
 - name: Ensure that archlinux-keyring is installed.
-    pacman:
-      name: archlinux-keyring
-      state: present
-    register: archlinux_keyring_result
+  pacman:
+    name: archlinux-keyring
+    state: present
+  register: archlinux_keyring_result
 
 - name: Ensure that keys are loaded.
   shell: pacman-key --populate archlinux
