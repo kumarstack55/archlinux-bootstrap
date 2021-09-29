@@ -24,7 +24,7 @@
     state: present
 
 - name: Ensure that all packages are upgraded.
-  shell: pacman -Syu
+  shell: pacman -Syu --noconfirm
 
 - name: Ensure that keys are loaded.
   shell: pacman-key --populate archlinux
