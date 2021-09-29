@@ -16,7 +16,6 @@
     - python3
     - python-pip
     - bash-completion
-    - archlinux-keyring
 
 - name: Ensure that archlinux-keyring is installed.
   pacman:
