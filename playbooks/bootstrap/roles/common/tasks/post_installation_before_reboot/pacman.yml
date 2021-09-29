@@ -22,11 +22,12 @@
     name: archlinux-keyring
     state: present
 
-- name: Ensure that keys are loaded.
-  shell: pacman-key --populate archlinux
+# 2021-09-29 refresh-keys の実行に失敗するため、無効にする。
+#- name: Ensure that keys are loaded.
+#  shell: pacman-key --populate archlinux
 
-- name: Ensure that keys are refreshed.
-  shell: pacman-key --refresh-keys
+#- name: Ensure that keys are refreshed.
+#  shell: pacman-key --refresh-keys
 
 - name: Ensure that all packages are upgraded.
   shell: pacman -Syu --noconfirm
